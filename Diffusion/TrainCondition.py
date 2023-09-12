@@ -173,10 +173,11 @@ def eval(modelConfig: Dict):
                 # 采样
                 noisyImage = torch.randn(size=[batch_size, 1, 512, 256], device=device)
                 sampledImgs = sampler(noisyImage, labels)
+                # sampledImgs = sampledImgs[:,:,:, 64:192]
                 sampledImgs = torch.cat((labels.cpu(), img.cpu(), sampledImgs.cpu()), -1)
                 grid = make_grid(sampledImgs, nrow=modelConfig["nrow"])
                 ndarr = grid.mul(255).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
                 im = Image.fromarray(ndarr)
                 id_list = list(id[i])
-                id_list.insert(9, "_enhanced")
+                id_list.insert(9, "_original")
                 im.save(os.path.join(modelConfig["sampled_dir"], ''.join(id_list)))

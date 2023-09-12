@@ -2,7 +2,7 @@ from Diffusion.TrainCondition import train, eval
 
 def main(model_config=None):
     modelConfig = {
-        "state": "eval", # or eval
+        "state": "train", # or eval
         "sample": "ddim",
         "noise_schedule": "linear", # "linear" or "cosine"
         "epoch": 2000,
@@ -20,18 +20,18 @@ def main(model_config=None):
         "beta_T": 0.05,
         "img_size": 32,
         "grad_clip": 1.,
-        "device": "cuda:1",
+        "device": "cuda:0",
         "w": 1.8,
         "save_dir": "./Model_Weights/",
         "training_load_weight": "ema_ckpt_1000_.pt",
-        "test_load_weight": "/home/zyh/home/zyh/projects/UXDiffusion/Model_Weights/ema_ckpt_US2Xray_1800_.pt",
+        "test_load_weight": "ema_ckpt_US2Xray_1800_.pt",
         "sampled_dir": "./Sampled_Images",
         "nrow": 1,
         "supervision": "US2Xray",
         "Xray_root_train": "/home/zyh/home/zyh/data/Xray/Paired_Xray_Us/Xray_Cor/Crop/train",
         "Us_root_train": "/home/zyh/home/zyh/data/Xray/Paired_Xray_Us/Xray_Cor/US/train",
-        "Xray_root_evaluation": "/home/zyh/home/zyh/data/Xray/Paired_Xray_Us/Xray_Cor/Crop/val",
-        "Us_root_evaluation": "/home/zyh/home/zyh/data/Xray/Paired_Xray_Us/Xray_Cor/US/val_enhanced",
+        "Xray_root_evaluation": "/home/zyh/home/zyh/data/Xray/Paired_Xray_Us/Xray_Cor/Crop/train",
+        "Us_root_evaluation": "/home/zyh/home/zyh/data/Xray/Paired_Xray_Us/Xray_Cor/US/train",
     }
     if model_config is not None:
         modelConfig = model_config

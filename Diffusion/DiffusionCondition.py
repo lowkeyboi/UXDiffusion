@@ -158,7 +158,7 @@ class GaussianDiffusionSampler(nn.Module):
         """
         Algorithm 2.
         """
-        torch.manual_seed(666)
+        # torch.manual_seed(666)
 
         # x_T_interpolation = torch.zeros(size=[1, 1, 256, 128]).to(x_T.device)
         # import torch.nn.functional as F

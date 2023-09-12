@@ -514,7 +514,7 @@ class UNetModel(nn.Module):
             hs.append(h)
 
         supervised_info = self.fusion_model(c_us, emb)
-        h = h + supervised_info
+        h = supervised_info
         h = self.middle_block(h, emb)
         for module in self.output_blocks:
             cat_in = th.cat([h, hs.pop()], dim=1)
